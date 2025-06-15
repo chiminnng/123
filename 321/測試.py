@@ -9,8 +9,8 @@ st.title("NBA 球隊正負值分析與勝率預測")
 pd.options.display.float_format = '{:.2f}'.format
 
 # ===== 資料夾路徑 =====
-csv_dir = "321"
-logo_dir = "321"
+csv_dir = "程式專題"
+logo_dir = "程式專題"
 
 # ===== 讀取所有 CSV 檔案 =====
 csv_files = [f for f in os.listdir(csv_dir) if f.endswith('_plus_minus.csv')]
@@ -36,13 +36,18 @@ team_name_mapping = {
 }
 
 all_teams = sorted(df_all['球隊'].unique())
+chinese_team_to_en = {v: k for k, v in team_name_mapping.items()}
+chinese_team_list = [team_name_mapping.get(t, t) for t in all_teams]
 
 # ===== 選擇主場與客場 =====
 col1, col2 = st.columns(2)
 with col1:
-    team_name1 = st.selectbox("請選擇 **主場** 球隊：", all_teams)
+    chinese_team_name1 = st.selectbox("請選擇 **主場** 球隊：", chinese_team_list)
 with col2:
-    team_name2 = st.selectbox("請選擇 **客場** 球隊：", all_teams)
+    chinese_team_name2 = st.selectbox("請選擇 **客場** 球隊：", chinese_team_list)
+
+team_name1 = chinese_team_to_en.get(chinese_team_name1, chinese_team_name1)
+team_name2 = chinese_team_to_en.get(chinese_team_name2, chinese_team_name2)
 
 def get_image_base64(image_path):
     with open(image_path, "rb") as img_file:
