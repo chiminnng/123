@@ -9,8 +9,8 @@ st.title("NBA 球隊正負值分析與勝率預測")
 pd.options.display.float_format = '{:.2f}'.format
 
 # ===== 資料夾路徑 =====
-csv_dir = "程式專題"
-logo_dir = "程式專題"
+csv_dir = "321"
+logo_dir = "321"
 
 # ===== 讀取所有 CSV 檔案 =====
 csv_files = [f for f in os.listdir(csv_dir) if f.endswith('_plus_minus.csv')]
